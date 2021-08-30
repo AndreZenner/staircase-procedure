@@ -1,0 +1,47 @@
+import sys
+import csv
+import threading
+from threading import Thread
+
+# import script
+import os.path
+direc = (os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) + '/LivePlotter/')
+sys.path.append(direc)
+import plotter
+
+
+delim = sys.argv[1]
+file_path =  sys.argv[2]
+if len(sys.argv) == 4:
+    save_svg_path =  sys.argv[3]
+
+# parse file and pass data to plotter
+def read_file():
+    with open(file_path, 'r') as file:
+        reader = csv.reader(file, delimiter=delim)
+        for index, row_csv in enumerate(reader):
+            if row_csv:
+                if row_csv[0] == "name":
+                    plotTitle =  "Staircase Results - " + row_csv[2] + " - Participant " +  row_csv[3];
+                    experiment_name = row_csv[1]
+                    condition_name = row_csv[2]
+                    number_participant = row_csv[3]         
+                elif row_csv[0] == "init":  
+                    init_array = [row_csv[1],row_csv[2],row_csv[3],row_csv[8],row_csv[6],plotTitle,"",experiment_name,condition_name,number_participant, row_csv[10]]
+                    init_string = ';'.join(init_array)
+                    plotter.init(init_string)
+                elif row_csv[0] == "trial":
+                    trial_array = [row_csv[1],row_csv[2],row_csv[3],row_csv[4],row_csv[5],row_csv[6]]
+                    data_string = ';'.join(trial_array)
+                    plotter.add_trial(data_string)
+                elif row_csv[0] == "threshold":
+                    plotter.plot_threshold(row_csv[1])
+                else: 
+                    pass
+            else:
+                pass
+
+plotter.create_plot()
+read_file()
+if len(sys.argv) == 4: plotter.fileplotter_save_plot(save_svg_path)
+plotter.show_plot()
