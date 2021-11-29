@@ -17,6 +17,23 @@ We open-source the toolkit here so that other researchers can make use of it for
 Feel free to use the toolkit for your own experiments and projects (and if you find the time, let us know about it by sending an (informal) [email to André](mailto:andre.zenner@dfki.de)).
 
 
+## Reference
+Please reference the toolkit as follows (e.g. with the BibTex below).
+
+> Zenner, A., & Ullmann, K.. (2021). AndreZenner/staircase-procedure: The Unity Staircase Procedure Toolkit. https://github.com/AndreZenner/staircase-procedure
+
+```
+@misc{Zenner:2021:UnityStaircase, 
+ title={AndreZenner/staircase-procedure: The Unity Staircase Procedure Toolkit}, 
+ url={https://github.com/AndreZenner/staircase-procedure}, 
+ journal={GitHub}, 
+ author={Zenner, André and Ullmann, Kristin}, 
+ year={2021}, 
+ month={Aug}
+} 
+```
+
+
 ## Overview
 
 A toolkit for Unity implementing an interleaved staircase procedure to conduct psychophysical threshold experiments.
