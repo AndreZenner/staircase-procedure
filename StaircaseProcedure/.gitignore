@@ -15,7 +15,11 @@
 
 # local pycache
 **/__pycache__/
+*__pycache__.meta
 [Aa]ssets/StaircaseProcedure/PythonTools/LivePlotter/__pycache__.meta
+[Aa]ssets/StaircaseProcedure/PythonTools/DataAnalysis/__pycache__.meta
+[Aa]ssets/StaircaseProcedure/PythonTools/DataAnalysis/sections/__pycache__.meta
+
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
