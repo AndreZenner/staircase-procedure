@@ -9,13 +9,11 @@ namespace Staircase
     public class ProcedureLogic
     {
 
+        private bool isFinished;
         private int indexTrial;
         private Sequence currSequence, sequenceOne, sequenceTwo;
         private List<TrialData> trialDataList;
-        private List<float> reversalsList;
         private List<int> sequenceList;
-        private ServerSocket server;
-        private FileWriter writer;
         private InitData init;
         private static System.Random ran = new System.Random();
 
@@ -24,13 +22,13 @@ namespace Staircase
 
             this.init = init;
 
+            isFinished = false;
             indexTrial = 0;
             float absoluteStartStimulusLeft = Mathf.Lerp(init.minimumValue, init.maximumValue, (float)init.startStepSequ1 / (float)init.numberOfSteps);
             float absoluteStartStimulusRight = Mathf.Lerp(init.minimumValue, init.maximumValue, (float)init.startStepSequ2 / (float)init.numberOfSteps);
-            sequenceOne = new Sequence(absoluteStartStimulusLeft, 1, Dir.UP, init.strictLimits, init.numberOfSteps, init.minimumValue, init.maximumValue, init.startStepSequ1);
-            sequenceTwo = new Sequence(absoluteStartStimulusRight, 2, Dir.DOWN, init.strictLimits, init.numberOfSteps, init.minimumValue, init.maximumValue, init.startStepSequ2);
+            sequenceOne = new Sequence(absoluteStartStimulusLeft, 1, Dir.UP, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStart, init.stepsDownStart, init.quickStartUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ1);
+            sequenceTwo = new Sequence(absoluteStartStimulusRight, 2, Dir.DOWN, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStart, init.stepsDownStart, init.quickStartUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ2);
             trialDataList = new List<TrialData>();
-            reversalsList = new List<float>();
 
             // if number of trials is your stop criterion, a list will be created with 1s and 2s (sequence 1 or 2) to ensure random sequence selection with equal partial amounts
             if (!init.stopCriterionReversals) InitSequenceList();
@@ -77,7 +75,6 @@ namespace Staircase
                     else
                     {
                         reversal = true;
-                        reversalsList.Add(stimulus);
                         currSequence.reversals.Add(stimulus);
                     }
                     currSequence.direction = Dir.DOWN;
@@ -95,7 +92,6 @@ namespace Staircase
                     else
                     {
                         reversal = true;
-                        reversalsList.Add(stimulus);
                         currSequence.reversals.Add(stimulus);
                     }
                     currSequence.direction = Dir.UP;
@@ -105,6 +101,10 @@ namespace Staircase
             TrialData data = new TrialData(currSequence.numSequence, indexTrial, currSequence.indexSequence, stimulus, stimulusNoticed, reversal);
             trialDataList.Add(data);
             currSequence.indexSequence += 1;
+
+            if (IsLastTrial())
+                isFinished = true;
+
             return data;
         }
 
@@ -180,6 +180,14 @@ namespace Staircase
             {
                 return indexTrial == init.stopAmount;
             }
+        }
+
+        /// <summary>
+        /// Returns true if the staircase is finished and no additional trials need to be completed.
+        /// </summary>
+        public bool IsFinished()
+        {
+            return isFinished;
         }
     }
 

@@ -147,7 +147,7 @@ def create_plot():
 
 def start_animate():
     try:
-        ani = animation.FuncAnimation(fig, animate, interval=100)
+        ani = animation.FuncAnimation(fig, animate, interval=2000)
     except Exception as e:
         logging.error(traceback.format_exc())
 

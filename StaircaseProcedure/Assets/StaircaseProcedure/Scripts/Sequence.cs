@@ -16,11 +16,26 @@ public class Sequence
     private bool strictLimits;
     private int numberOfSteps, currentStep;
     private float minimumValue, maximumValue;
+    private int stepsUp, stepsDown;
+    private int stepsUpStart, stepsDownStart;
+    private int quickStartUntilReversals;
 
     private float counter;
-    private float stepSize = 1.0f;
 
-    public Sequence(float startStimulus, int numSequence, Dir direction, bool strictLimits, int numberOfSteps, float minimumValue, float maximumValue, int startStep)
+    public Sequence(
+        float startStimulus, 
+        int numSequence, 
+        Dir direction, 
+        bool strictLimits, 
+        int numberOfSteps,
+        int stepsUp,
+        int stepsDown,
+        int stepsUpStart,
+        int stepsDownStart,
+        int quickStartUntilReversals,
+        float minimumValue, 
+        float maximumValue, 
+        int startStep)
     {
         reversals = new List<float>();
         stimulus = startStimulus;
@@ -29,6 +44,11 @@ public class Sequence
         this.direction = direction;
         this.strictLimits = strictLimits;
         this.numberOfSteps = numberOfSteps;
+        this.stepsUp = stepsUp;
+        this.stepsDown = stepsDown;
+        this.stepsUpStart = stepsUpStart;
+        this.stepsDownStart = stepsDownStart;
+        this.quickStartUntilReversals = quickStartUntilReversals;
         this.minimumValue = minimumValue;
         this.maximumValue = maximumValue;
         this.currentStep = startStep;
@@ -38,8 +58,11 @@ public class Sequence
     /// <summary> Decrease StepCounter and set stimulus </summary>
     public void DecCounter()
     {
-
-        counter = counter - stepSize;
+        //if still in "quick start" mode -> use the start steps size
+        if (reversals.Count < quickStartUntilReversals)
+            counter = counter - stepsDownStart;
+        else //else: use the (weighted) step size
+            counter = counter - stepsDown;
 
         if (strictLimits && counter < 0)
         {
@@ -53,8 +76,11 @@ public class Sequence
     /// <summary> Increase StepCounter and set stimulus </summary>
     public void IncCounter()
     {
-
-        counter = counter + stepSize;
+        //if still in "quick start" mode -> use the start steps size
+        if (reversals.Count < quickStartUntilReversals)
+            counter = counter + stepsUpStart;
+        else //else: use the (weighted) step size
+            counter = counter + stepsUp;
 
         if (strictLimits && counter > numberOfSteps)
         {
@@ -63,5 +89,4 @@ public class Sequence
 
         stimulus = Mathf.Lerp(minimumValue, maximumValue, (float)Mathf.Clamp((float)counter, (float)0, (float)numberOfSteps) / (float)numberOfSteps);
     }
-
 }

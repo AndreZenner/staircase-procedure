@@ -296,77 +296,77 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8585627314897446856
+--- !u!1001 &2447295698814616142
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287018, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
+        type: 3}
+      propertyPath: m_Name
+      value: Multiple Staircase Procedure
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945659834452287019, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
+        type: 3}
+      propertyPath: PythonPath
+      value: C:/Windows/py.exe
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308330, guid: 7ede870b5719640b1902a0830338e306,
+    - target: {fileID: 2945659834452287020, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308332, guid: 7ede870b5719640b1902a0830338e306,
-        type: 3}
-      propertyPath: m_Name
-      value: Staircase Procedure
-      objectReference: {fileID: 0}
-    - target: {fileID: 9093289873269308333, guid: 7ede870b5719640b1902a0830338e306,
-        type: 3}
-      propertyPath: pythonPath
-      value: C:/Windows/py.exe
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7ede870b5719640b1902a0830338e306, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 1e32a2fbf12ede04bb17d8b1b8f7129b, type: 3}
