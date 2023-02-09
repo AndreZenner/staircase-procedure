@@ -17,7 +17,7 @@ public class FileWriter{
     private string logPath;
 
     private string csvpath, plotTitle, delimiter;
-    private List<string> headerInitList = new List<string> {"","minimumValue","maximumValue","numberOfSteps","startStepSequ1","startStepSequ2","stopAmount","numberThresholdPoints","stopCriterionReversals","strictLimits","showSubPlots"};
+    private List<string> headerInitList = new List<string> {"","minimumValue","maximumValue","numberOfSteps","startStepSequ1","startStepSequ2","stopAmount","numberThresholdPoints","stopCriterionReversals","strictLimits","showSubPlots","stepsUp","stepsDown","stepsUpStart","stepsDownStart","quickStartUntilReversals"};
     private List<string> headerTrialList = new List<string> {"","indexTrial","sequence","stimulus","stimulusNoticed","indexSequence","reversal"};
     
     public FileWriter(string resultsPath, string delimiter){
@@ -50,8 +50,8 @@ public class FileWriter{
 
         WriteCharacters(csvpath, "Staircase Results",false);
         WriteCharacters(csvpath, "");
-        WriteCharacters(csvpath, "" + delimiter +  "experimentName" + delimiter +  "conditionName" + delimiter +  "numberParticipant");
-        WriteCharacters(csvpath, "name" + delimiter + experimentName + delimiter +  conditionName + delimiter +  numberParticipant.ToString());
+        WriteCharacters(csvpath, "" + delimiter +  "experimentName" + delimiter +  "conditionName" + delimiter +  "numberParticipant" + delimiter + "plotTitle");
+        WriteCharacters(csvpath, "name" + delimiter + experimentName + delimiter +  conditionName + delimiter +  numberParticipant.ToString() + delimiter + plotTitle);
 
     }
 

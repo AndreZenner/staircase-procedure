@@ -121,7 +121,7 @@ def plot_threshold(threshold):
 
 # parse messages         
 def animate(i):
-    if(len(data_array) > 0):
+    while(len(data_array) > 0):
         message = data_array.pop(0)
         arg, msg = message.split("::")
         if arg == "init": 
@@ -140,10 +140,13 @@ def animate(i):
 def append_msg(msg):
     data_array.append(msg)
 
-def create_plot():
+def create_plot_with_size(w, h):
     global fig, data_array
-    fig = plt.figure()
-    data_array=[]
+    fig = plt.figure(figsize=(w, h))
+    data_array = []
+
+def create_plot():
+    create_plot_with_size(12, 6) #default size
 
 def start_animate():
     try:

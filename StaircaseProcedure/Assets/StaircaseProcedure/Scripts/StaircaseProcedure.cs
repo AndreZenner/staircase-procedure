@@ -166,7 +166,7 @@ public class StaircaseProcedure : MonoBehaviour
 
         // write init-data to csv file
         writer.InitWriter(experimentName, conditionName, numberParticipant, plotTitle);
-        writer.WriteInitCSV(minimumValue, maximumValue, numberOfSteps, startStepSequ1, startStepSequ2, stopAmount, numberThresholdPoints, stopCriterionReversals, strictLimits, showSubPlots);
+        writer.WriteInitCSV(minimumValue, maximumValue, numberOfSteps, startStepSequ1, startStepSequ2, stopAmount, numberThresholdPoints, stopCriterionReversals, strictLimits, showSubPlots, stepsUp, stepsDown, stepsUpStart, stepsDownStart, quickStartUntilReversals);
 
         isConnected = false;
         // start client as process and connect with server
