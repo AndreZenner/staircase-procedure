@@ -51,6 +51,20 @@ The results of the procedure are saved in csv files.
 **What is an interleaved staircase procedure?**
 In experiments that investigate whether a participant is able to detect a stimulus, multiple stimuli are tested one after the other to determine the detection threshold. The interleaved staircase procedure provides an algorithm to estimate the threshold based on a set of such trials. For each trial, the algorithm randomly selects one of two sequences: Sequence 1 (which initially starts with a high stimulus intensity) and Sequence 2 (which initally starts with a low stimulus intensity). If the participant notices the stimulus, the intensity will be decreased in the next trial of that sequence, whereas if the participants doesn't notice the stimulus, the intensity will be increased. The point at which the answer is changing from 'noticed' to 'not noticed' or vice versa is called 'reversal point'. The threshold is then calculated by averaging the last reversal points.  
 
+**What is a _weighted_ interleaved staircase procedure (aka. weighted up/down method)?**
+When using the default staircase procedure (the 1 up/1 down method), the threshold that the sequence will converge to is the stimulus at which participants have a 50% chance of correctly detecting it (aka. the 50% threshold, $P_{50}$). To target other thresholds, the _weighted_ up/down method can be used, which means that the stimulus is increased more than it is decreased (i.e., the steps up are larger than the steps down). The following formula can be used in order to determine the required relative step sizes (i.e., suitable values for `stepsUp` and `stepsDown`) in order to approximate a target threshold $P_{target}$:  
+$$P_{target} = {Steps_{up} \over Steps_{up} + Steps_{down}}$$
+The formula above results in:
+$${Steps_{down} \over Steps_{up}} = {1 - P_{target} \over P_{target}}$$
+
+***Example: Targeting the 50%-correct threshold*** $P_{50}$  
+$${Steps_{down} \over Steps_{up}} = {1 - P_{50} \over P_{50}} = {1 - 0.50 \over 0.50} = {1 \over 1}$$
+This is the default setting of `stepsUp` and `stepsDown`.
+
+***Example: Targeting the 75%-correct threshold*** $P_{75}$  
+$${Steps_{down} \over Steps_{up}} = {1 - P_{75} \over P_{75}} = {1 - 0.75 \over 0.75} = {0.25 \over 0.75} = {1 \over 3}$$
+Targeting this threshold (instead of the 50%-correct threshold) can be necessary, for example, when a symmetric question (e.g., "Was the stimulus left or right?") or a 2AFC question (e.g., "Which presentation showed the stimulus? Presentation 1 or 2?") is used and participants have a 50% guessing chance (i.e., the psychometric function goes from 50% to 100%, not from 0% to 100%).  
+
 If you want to read more about this topic, we recommend the chapter on Adaptive Methods in this excellent book by Kingdom & Prins: 
 *Psychophysics: A Practical Introduction (2016).Frederick A.A. Kingdom, Nicolaas Prins.*
 
