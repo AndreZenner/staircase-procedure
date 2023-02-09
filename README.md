@@ -240,10 +240,15 @@ The data is send via sockets from the server (Unity) to the client (Python). Mat
 
 ## File Plotter:
 In case you want to plot the data afterwards there is an additional script to create the plot from the csv file.
-In your console go to the `PythonTools/FilePlotter` folder in your Unity project and run:
-> $ python3 plot_from_file.py {delimiter} {csv-filepath}  (optional: {save-svg-path})   
+In your console go to the `PythonTools/FilePlotter` folder in your Unity project and run (with Python 3):
+```
+python plot_from_file.py {delimiter} {csv-filepath}  (optional: {save-svg-path}) (optional: {plot-width-in-inches}) (optional: {plot-height-in-inches})
+```
 
-> e.g.: $ python3 plot_from_file.py ";" "C:\Users\...\P_ExperimentName_0_ConditionName.csv" "C:\Users\...\P_ExperimentName_0_ConditionName.svg"
+For example, to create a 8x4 inches plot, you would call:
+```
+python plot_from_file.py ";" "C:\Users\...\P_ExperimentName_0_ConditionName.csv" "C:\Users\...\P_ExperimentName_0_ConditionName.svg" 8 4
+```
 
 ## Data Analysis Tool (beta):
 Once you finished your experiments, you can open the data analysis tool to analyse the results and perform statistical tests. You can use the button `Open Data Analysis Application` in the Unity Inspector, or run the script from your console.
