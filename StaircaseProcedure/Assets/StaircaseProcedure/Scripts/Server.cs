@@ -20,7 +20,7 @@ namespace Staircase
 
             try
             {
-                Debug.Log("Starting server...");
+                Debug.Log("Starting server @ " + ipAddress + ":" + port + " ...");
                 listener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 listener.Bind(localEndPoint);
                 listener.Listen(10);
@@ -46,13 +46,13 @@ namespace Staircase
 
         public void SendTrialDataToClient(TrialData data)
         {
-            string msg_data = "" + data.indexTrial + ";" + data.sequence + ";" + data.stimulus + ";" + data.stimulusNoticed + ";" + data.indexSequence + ";" + data.reversal;
+            string msg_data = "" + data.indexTrial + ";" + data.sequence + ";" + data.stimulus.ToString(StaircaseProcedure.nfi) + ";" + data.stimulusNoticed + ";" + data.indexSequence + ";" + data.reversal;
             Send("trial::" + msg_data);
         }
 
         public void SendThresholdToClient(float threshold)
         {
-            Send("threshold::" + threshold);
+            Send("threshold::" + threshold.ToString(StaircaseProcedure.nfi));
             CloseConnection();
         }
 
