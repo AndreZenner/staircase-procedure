@@ -13,6 +13,7 @@ public class StaircaseProcedure : MonoBehaviour
 
     public static StaircaseProcedure SP;                // one of the parallel SPs
     public static List<StaircaseProcedure> AllSPs;      // list of all parallel SPs
+    public static NumberFormatInfo nfi = new NumberFormatInfo();
 
     /// <summary>
     /// Returns true if all the parallel staircases are finished and no trials remain in the experiment.
@@ -163,6 +164,7 @@ public class StaircaseProcedure : MonoBehaviour
             plotTitle);
 
         proc = new ProcedureLogic(init);
+        nfi.NumberDecimalSeparator = ".";
 
         // write init-data to csv file
         writer.InitWriter(experimentName, conditionName, numberParticipant, plotTitle);
@@ -176,6 +178,7 @@ public class StaircaseProcedure : MonoBehaviour
             {
                 Debug.Log("Start Plot Process");
                 StartProcess(Application.dataPath + "/StaircaseProcedure/PythonTools/liveplotter/client.py " + IPAddress + " " + port);
+                Debug.Log("Started:" + Application.dataPath + "/StaircaseProcedure/PythonTools/liveplotter/client.py " + IPAddress + " " + port);
             }
             StartCoroutine("AcceptClientCoroutine");
         }
@@ -323,7 +326,7 @@ public class StaircaseProcedure : MonoBehaviour
     /// <summary> Sends init parameters to client </summary>
     private void InitClient()
     {
-        server.SendInitToClient(init.minimumValue, init.maximumValue, init.numberOfSteps, init.stopCriterionReversals, init.stopAmount, init.plotTitle, init.resultsPath, init.experimentName, init.conditionName, init.numberParticipant, showSubPlots);
+        server.SendInitToClient(init.minimumValue.ToString(nfi), init.maximumValue.ToString(nfi), init.numberOfSteps, init.stopCriterionReversals, init.stopAmount, init.plotTitle, init.resultsPath, init.experimentName, init.conditionName, init.numberParticipant, showSubPlots);
     }
 
     public IEnumerator AcceptClientCoroutine()
