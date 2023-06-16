@@ -13,7 +13,7 @@ Key features:
 - saves results to CSV files  
 - super easy to interface with  
 - support for the 1 up/1 down method
-- support for the weighted (X up/Y down) method  
+- support for the weighted up/down method  
 - supports multiple staircases in parallel  
 - supports a "quick start", where larger steps are taken until X (can be set freely) reversals have occurred (to speed up finding the relevant stimulus range early in the experiment)  
 
