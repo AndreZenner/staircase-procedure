@@ -21,9 +21,12 @@ public class TestManager : MonoBehaviour
     public int numberOfSteps = 10;
     public int stepsUp = 1;
     public int stepsDown = 1;
-    public int stepsUpStart = 1;
-    public int stepsDownStart = 1;
-    public int quickStartUntilReversals = 0;
+    public int stepsUpStartEarly = 1;
+    public int stepsDownStartEarly = 1;
+    public int quickStartEarlyUntilReversals = 0;
+    public int stepsUpStartLate = 1;
+    public int stepsDownStartLate = 1;
+    public int quickStartLateUntilReversals = 0;
     public int startStepSequ1 = 0;
     public int startStepSequ2 = 8;
     public int stopAmount = 5;
@@ -47,9 +50,12 @@ public class TestManager : MonoBehaviour
                     startStepSequ2: startStepSequ2,
                     stepsUp: stepsUp,
                     stepsDown: stepsDown,
-                    stepsUpStart: stepsUpStart,
-                    stepsDownStart: stepsDownStart,
-                    quickStartUntilReversals: quickStartUntilReversals,
+                    stepsUpStartEarly: stepsUpStartEarly,
+                    stepsDownStartEarly: stepsDownStartEarly,
+                    quickStartEarlyUntilReversals: quickStartEarlyUntilReversals,
+                    stepsUpStartLate: stepsUpStartLate,
+                    stepsDownStartLate: stepsDownStartLate,
+                    quickStartLateUntilReversals: quickStartLateUntilReversals,
                     stopAmount: stopAmount,
                     numberThresholdPoints: numberThresholdPoints, 
                     experimentName: experimentName,

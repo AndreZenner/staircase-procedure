@@ -17,8 +17,10 @@ public class Sequence
     private int numberOfSteps, currentStep;
     private float minimumValue, maximumValue;
     private int stepsUp, stepsDown;
-    private int stepsUpStart, stepsDownStart;
-    private int quickStartUntilReversals;
+    private int stepsUpStartEarly, stepsDownStartEarly;
+    private int quickStartEarlyUntilReversals;
+    private int stepsUpStartLate, stepsDownStartLate;
+    private int quickStartLateUntilReversals;
 
     private float counter;
 
@@ -30,9 +32,12 @@ public class Sequence
         int numberOfSteps,
         int stepsUp,
         int stepsDown,
-        int stepsUpStart,
-        int stepsDownStart,
-        int quickStartUntilReversals,
+        int stepsUpStartEarly,
+        int stepsDownStartEarly,
+        int quickStartEarlyUntilReversals,
+        int stepsUpStartLate,
+        int stepsDownStartLate,
+        int quickStartLateUntilReversals,
         float minimumValue, 
         float maximumValue, 
         int startStep)
@@ -46,9 +51,12 @@ public class Sequence
         this.numberOfSteps = numberOfSteps;
         this.stepsUp = stepsUp;
         this.stepsDown = stepsDown;
-        this.stepsUpStart = stepsUpStart;
-        this.stepsDownStart = stepsDownStart;
-        this.quickStartUntilReversals = quickStartUntilReversals;
+        this.stepsUpStartEarly = stepsUpStartEarly;
+        this.stepsDownStartEarly = stepsDownStartEarly;
+        this.quickStartEarlyUntilReversals = quickStartEarlyUntilReversals;
+        this.stepsUpStartLate = stepsUpStartLate;
+        this.stepsDownStartLate = stepsDownStartLate;
+        this.quickStartLateUntilReversals = quickStartLateUntilReversals;
         this.minimumValue = minimumValue;
         this.maximumValue = maximumValue;
         this.currentStep = startStep;
@@ -58,9 +66,11 @@ public class Sequence
     /// <summary> Decrease StepCounter and set stimulus </summary>
     public void DecCounter()
     {
-        //if still in "quick start" mode -> use the start steps size
-        if (reversals.Count < quickStartUntilReversals)
-            counter = counter - stepsDownStart;
+        //if still in "quick start" mode -> use the (weighted) start steps size(s)
+        if (reversals.Count < quickStartEarlyUntilReversals)    // use "Early" step sizes until quickStartEarlyUntilReversals-many reversals have occurred
+            counter = counter - stepsDownStartEarly;
+        else if (reversals.Count < quickStartLateUntilReversals)// use "Late" step sizes if more then quickStartEarlyUntilReversals-many reversals, but less than quickStartLateUntilReversals-many reversals have occurred
+            counter = counter - stepsDownStartLate;
         else //else: use the (weighted) step size
             counter = counter - stepsDown;
 
@@ -76,11 +86,13 @@ public class Sequence
     /// <summary> Increase StepCounter and set stimulus </summary>
     public void IncCounter()
     {
-        //if still in "quick start" mode -> use the start steps size
-        if (reversals.Count < quickStartUntilReversals)
-            counter = counter + stepsUpStart;
+        //if still in "quick start" mode -> use the (weighted) start steps size(s)
+        if (reversals.Count < quickStartEarlyUntilReversals)    // use "Early" step sizes until quickStartEarlyUntilReversals-many reversals have occurred
+            counter = counter + stepsUpStartEarly;
+        else if (reversals.Count < quickStartLateUntilReversals)// use "Late" step sizes if more then quickStartEarlyUntilReversals-many reversals, but less than quickStartLateUntilReversals-many reversals have occurred
+            counter = counter + stepsUpStartLate;
         else //else: use the (weighted) step size
-            counter = counter + stepsUp;
+        counter = counter + stepsUp;
 
         if (strictLimits && counter > numberOfSteps)
         {

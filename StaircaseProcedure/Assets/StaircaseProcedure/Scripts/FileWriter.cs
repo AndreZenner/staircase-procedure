@@ -17,7 +17,7 @@ public class FileWriter{
     private string logPath;
 
     private string csvpath, plotTitle, delimiter;
-    private List<string> headerInitList = new List<string> {"","minimumValue","maximumValue","numberOfSteps","startStepSequ1","startStepSequ2","stopAmount","numberThresholdPoints","stopCriterionReversals","strictLimits","showSubPlots","stepsUp","stepsDown","stepsUpStart","stepsDownStart","quickStartUntilReversals"};
+    private List<string> headerInitList = new List<string> {"","minimumValue","maximumValue","numberOfSteps","startStepSequ1","startStepSequ2","stopAmount","numberThresholdPoints","stopCriterionReversals","strictLimits","showSubPlots","stepsUp","stepsDown","stepsUpStartEarly","stepsDownStartEarly", "quickStartEarlyUntilReversals", "stepsUpStartLate", "stepsDownStartLate", "quickStartLateUntilReversals" };
     private List<string> headerTrialList = new List<string> {"","indexTrial","sequence","stimulus","stimulusNoticed","indexSequence","reversal"};
     
     public FileWriter(string resultsPath, string delimiter){

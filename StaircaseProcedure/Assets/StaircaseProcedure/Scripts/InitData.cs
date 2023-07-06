@@ -16,9 +16,12 @@ namespace Staircase{
         public int startStepSequ2{ get; }
         public int stepsUp { get; }
         public int stepsDown { get; }
-        public int stepsUpStart { get; }
-        public int stepsDownStart { get; }
-        public int quickStartUntilReversals { get; }
+        public int stepsUpStartEarly { get; }
+        public int stepsDownStartEarly { get; }
+        public int quickStartEarlyUntilReversals { get; }
+        public int stepsUpStartLate { get; }
+        public int stepsDownStartLate { get; }
+        public int quickStartLateUntilReversals { get; }
         public int stopAmount{ get; }
         public int numberThresholdPoints{ get; }
         public string resultsPath{ get; }
@@ -36,9 +39,12 @@ namespace Staircase{
             int startStepSequ2, 
             int stepsUp, 
             int stepsDown,
-            int stepsUpStart,
-            int stepsDownStart,
-            int quickStartUntilReversals,
+            int stepsUpStartEarly,
+            int stepsDownStartEarly,
+            int quickStartEarlyUntilReversals,
+            int stepsUpStartLate,
+            int stepsDownStartLate,
+            int quickStartLateUntilReversals,
             int stopAmount,
             int numberThresholdPoints,
             string resultsPath,
@@ -57,9 +63,12 @@ namespace Staircase{
             this.startStepSequ2 = startStepSequ2;
             this.stepsUp = stepsUp;
             this.stepsDown = stepsDown;
-            this.stepsUpStart = stepsUpStart;
-            this.stepsDownStart = stepsDownStart;
-            this.quickStartUntilReversals = quickStartUntilReversals;
+            this.stepsUpStartEarly = stepsUpStartEarly;
+            this.stepsDownStartEarly = stepsDownStartEarly;
+            this.quickStartEarlyUntilReversals = quickStartEarlyUntilReversals;
+            this.stepsUpStartLate = stepsUpStartLate;
+            this.stepsDownStartLate = stepsDownStartLate;
+            this.quickStartLateUntilReversals = quickStartLateUntilReversals;
             this.stopAmount = stopAmount;
             this.numberThresholdPoints = numberThresholdPoints;
             this.numberThresholdPoints = numberThresholdPoints;

@@ -26,8 +26,8 @@ namespace Staircase
             indexTrial = 0;
             float absoluteStartStimulusLeft = Mathf.Lerp(init.minimumValue, init.maximumValue, (float)init.startStepSequ1 / (float)init.numberOfSteps);
             float absoluteStartStimulusRight = Mathf.Lerp(init.minimumValue, init.maximumValue, (float)init.startStepSequ2 / (float)init.numberOfSteps);
-            sequenceOne = new Sequence(absoluteStartStimulusLeft, 1, Dir.UP, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStart, init.stepsDownStart, init.quickStartUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ1);
-            sequenceTwo = new Sequence(absoluteStartStimulusRight, 2, Dir.DOWN, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStart, init.stepsDownStart, init.quickStartUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ2);
+            sequenceOne = new Sequence(absoluteStartStimulusLeft, 1, Dir.UP, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStartEarly, init.stepsDownStartEarly, init.quickStartEarlyUntilReversals, init.stepsUpStartLate, init.stepsDownStartLate, init.quickStartLateUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ1);
+            sequenceTwo = new Sequence(absoluteStartStimulusRight, 2, Dir.DOWN, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStartEarly, init.stepsDownStartEarly, init.quickStartEarlyUntilReversals, init.stepsUpStartLate, init.stepsDownStartLate, init.quickStartLateUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ2);
             trialDataList = new List<TrialData>();
 
             // if number of trials is your stop criterion, a list will be created with 1s and 2s (sequence 1 or 2) to ensure random sequence selection with equal partial amounts

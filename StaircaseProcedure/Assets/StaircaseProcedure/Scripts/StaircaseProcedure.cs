@@ -110,9 +110,12 @@ public class StaircaseProcedure : MonoBehaviour
     /// <param name="numberParticipant"> number of the participant </param>
     /// <param name="stepsUp">(default: 1) (increase it to realize a weighted up/down method) how many steps to increase the stimulus when answer was wrong/not detected (min. 1)</param>
     /// <param name="stepsDown">(default: 1) (use it to realize a weighted up/down method) how many steps to decrease the stimulus when answer was correct/detected (min. 1; usually kept at 1)</param>
-    /// <param name="stepsUpStart">(default: 1) (increase it to realize a "quick start") how many steps to increase the stimulus when answer was wrong/not detected (min. 1) before the first quickStartUntilReversals reversals have occurred</param>
-    /// <param name="stepsDownStart">(default: 1) (increase it to realize a "quick start") how many steps to decrease the stimulus when answer was correct/detected (min. 1) before the first quickStartUntilReversals reversals have occurred</param>
-    /// <param name="quickStartUntilReversals">(default: 0 = "quick start" is off) (increase it to realize a "quick start") specifies the number of reversals that have to occur until the step size that is applied upwards switches from stepsUpStart to stepsUp and the step size that is applied downwards changes from stepsDownStart to stepsDown</param>
+    /// <param name="stepsUpStartEarly">(default: 1) (increase it to realize a "quick start") how many steps to increase the stimulus when answer was wrong/not detected (min. 1) before the first quickStartEarlyUntilReversals reversals have occurred</param>
+    /// <param name="stepsDownStartEarly">(default: 1) (increase it to realize a "quick start") how many steps to decrease the stimulus when answer was correct/detected (min. 1) before the first quickStartEarlyUntilReversals reversals have occurred</param>
+    /// <param name="quickStartEarlyUntilReversals">(default: 0 = "quick start" is off) (increase it to realize a "quick start") specifies the number of reversals that have to occur until the step size that is applied upwards switches from stepsUpStartEarly to stepsUpStartLate and the step size that is applied downwards changes from stepsDownStartEarly to stepsDownStartLate</param>
+    /// <param name="stepsUpStartLate">(default: 1) (increase it to realize a "quick start" with two different step size patterns) how many steps to increase the stimulus when answer was wrong/not detected (min. 1) before the first quickStartLateUntilReversals reversals have occurred</param>
+    /// <param name="stepsDownStartLate">(default: 1) (increase it to realize a "quick start" with two different step size patterns) how many steps to decrease the stimulus when answer was correct/detected (min. 1) before the first quickStartLateUntilReversals reversals have occurred</param>
+    /// <param name="quickStartLateUntilReversals">(default: 0 = "quick start" is off) (increase it to realize a "quick start") specifies the number of reversals that have to occur until the step size that is applied upwards switches from stepsUpStartLate to stepsUp and the step size that is applied downwards changes from stepsDownStartLate to stepsDown</param>
     /// <param name="stopCriterionReversals"> (default: `true`) If `stopCriterionReversals` is set to `true`: *each individual sequence* will continue until `stopAmount` many* reversals* have occurred *in that specific sequence* (i.e.both sequences will perform `stopAmount` many reversals *each*). If `stopCriterionReversals` is set to `false`: *each individual sequence* will continue until `stopAmount/2` many* trials* have occurred *in that specific sequence* (i.e.both sequences * together* will perform `stopAmount` many trials). </param>
     /// <param name="strictLimits"> (default: `false`) This bool affects how cases are handled in which the user reports to notice a stimulus in a trial that presented the minimum stimulus (or reports not to notice a stimulus in a trial that presented the maximum stimulus). If `strictLimits` is set to `false` the staircase procedure will *virtually* continue beyond the minimum(maximum) but the minimum(maximum) stimulus will be returned as long as the* virtual staircase* is below the minimum(above the maximum) value. If `strictLimits` is set to `true` the staircase procedure will strictly stop to decrease(increase) at the minimum(maximum). Also in this case the minimum(maximum) stimulus will be returned.If in such a case the minimum (maximum) stimulus is not noticed (noticed) at some point, the stimulus will immediately increase again. </param>
     /// <param name="plotTitle"> title that is displayed above the chart (default: 'Staircase Results - {CONDITION} - Participant {X}') </param>
@@ -129,9 +132,12 @@ public class StaircaseProcedure : MonoBehaviour
         int numberParticipant,
         int stepsUp = 1,
         int stepsDown = 1,
-        int stepsUpStart = 1,
-        int stepsDownStart = 1,
-        int quickStartUntilReversals = 0,
+        int stepsUpStartEarly = 1,
+        int stepsDownStartEarly = 1,
+        int quickStartEarlyUntilReversals = 0,
+        int stepsUpStartLate = 1,
+        int stepsDownStartLate = 1,
+        int quickStartLateUntilReversals = 0,
         bool stopCriterionReversals = true, 
         bool strictLimits = false, 
         string plotTitle = ""
@@ -150,9 +156,12 @@ public class StaircaseProcedure : MonoBehaviour
             startStepSequ2, 
             stepsUp,
             stepsDown,
-            stepsUpStart, 
-            stepsDownStart,
-            quickStartUntilReversals,
+            stepsUpStartEarly, 
+            stepsDownStartEarly,
+            quickStartEarlyUntilReversals,
+            stepsUpStartLate,
+            stepsDownStartLate,
+            quickStartLateUntilReversals,
             stopAmount, 
             numberThresholdPoints,
             resultsPath, 
@@ -168,7 +177,7 @@ public class StaircaseProcedure : MonoBehaviour
 
         // write init-data to csv file
         writer.InitWriter(experimentName, conditionName, numberParticipant, plotTitle);
-        writer.WriteInitCSV(minimumValue, maximumValue, numberOfSteps, startStepSequ1, startStepSequ2, stopAmount, numberThresholdPoints, stopCriterionReversals, strictLimits, showSubPlots, stepsUp, stepsDown, stepsUpStart, stepsDownStart, quickStartUntilReversals);
+        writer.WriteInitCSV(minimumValue, maximumValue, numberOfSteps, startStepSequ1, startStepSequ2, stopAmount, numberThresholdPoints, stopCriterionReversals, strictLimits, showSubPlots, stepsUp, stepsDown, stepsUpStartEarly, stepsDownStartEarly, quickStartEarlyUntilReversals, stepsUpStartLate, stepsDownStartLate, quickStartLateUntilReversals);
 
         isConnected = false;
         // start client as process and connect with server
@@ -257,7 +266,7 @@ public class StaircaseProcedure : MonoBehaviour
             || port == 0
             || String.IsNullOrEmpty(delimiter)))
         {
-            Debug.Log("Hello! This is Staircase Procedure Toolkit v14");
+            Debug.Log("Hello! This is Staircase Procedure Toolkit v16");
             if (SP == null)
             {
                 SP = this;
