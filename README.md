@@ -150,11 +150,14 @@ If `strictLimits` is set to `false` the staircase procedure will *virtually* con
 If `strictLimits` is set to `true` the staircase procedure will strictly stop to decrease (increase) at the minimum (maximum). Also in this case the minimum (maximum) stimulus will be returned. If in such a case the minimum (maximum) stimulus is not noticed (noticed) at some point, the stimulus will immediately increase again.
 - `int stepsUp` (default: `1`) (increase it to realize a weighted up/down method) how many steps to increase the stimulus when answer was wrong/not detected (min. 1)
 - `int stepsDown` (default: `1`) (use it to realize a weighted up/down method) how many steps to decrease the stimulus when answer was correct/detected (min. 1; usually kept at 1)
-- `int stepsUpStart` (default: `1`) (increase it to realize a "quick start") how many steps to increase the stimulus when answer was wrong/not detected (min. 1) before the first `quickStartUntilReversals` reversals have occurred
--  `int stepsDownStart` (default: `1`) (increase it to realize a "quick start") how many steps to decrease the stimulus when answer was correct/detected (min. 1) before the first `quickStartUntilReversals` reversals have occurred
--  `int quickStartUntilReversals` (default: `0` = "quick start" is off) (increase it to realize a "quick start") specifies the number of reversals that have to occur until the step size that is applied upwards switches from `stepsUpStart` to `stepsUp` and the step size that is applied downwards changes from `stepsDownStart` to `stepsDown`
+- `int stepsUpStartEarly` (default: `1`) (increase it to realize a "quick start") how many steps to increase the stimulus when answer was wrong/not detected (min. 1) before the first `quickStartEarlyUntilReversals` reversals have occurred
+-  `int stepsDownStartEarly` (default: `1`) (increase it to realize a "quick start") how many steps to decrease the stimulus when answer was correct/detected (min. 1) before the first `quickStartEarlyUntilReversals` reversals have occurred
+-  `int quickStartEarlyUntilReversals` (default: `0` = "quick start" is off) (increase it to realize a "quick start") specifies the number of reversals that have to occur until the step size that is applied upwards switches from `stepsUpStartEarly` to `stepsUpStartLate` and the step size that is applied downwards changes from `stepsDownStartEarly` to `stepsDownStartLate`
+-  `int stepsUpStartLate` (default: `1`) (increase it to realize a "quick start" with an additional, intermediate step size) how many steps to increase the stimulus when answer was wrong/not detected (min. 1) after `quickStartEarlyUntilReversals` and before `quickStartLateUntilReversals` reversals have occurred
+-  `int stepsDownStartLate` (default: `1`) (increase it to realize a "quick start" with an additional, intermediate step size) how many steps to decrease the stimulus when answer was correct/detected (min. 1) after `quickStartEarlyUntilReversals` and before `quickStartLateUntilReversals` reversals have occurred
+-  `int quickStartLateUntilReversals` (default: `0` = "quick start" is off) (increase it to realize a "quick start" with an additional, intermediate step size) specifies the number of reversals that have to occur until the step size that is applied upwards switches from `stepsUpStartLate` to `stepsUp` and the step size that is applied downwards changes from `stepsDownStartLate` to `stepsDown`
 
-### Example:
+### Example 1:
 You can call the function in any of your Unity C# scripts:
 
 ```csharp
@@ -166,6 +169,11 @@ StaircaseProcedure.SP.Init(minimumValue: 0.0f, maximumValue: 1.0f, numberOfSteps
 ```
 
 <img src="/Resources/example_staircase.png"  width="700">
+
+### Example 2:
+An example for a staircase with 3 different step sizes, which are configured through the "quick start" parameters:
+
+<img src="/Resources/3StepSizesExampleAnnotated.png"  width="700">
 
 ## <a name="TrialData"></a> TrialData class:
 
