@@ -276,6 +276,8 @@ Enjoy! ;)
 
 **Common Python Issues:**
 - Check the paths and avoid any spaces in the folder and file names!
+- Make sure the "Python Path" variable in the `StaircaseProcedure` script points to the `python.exe` file.
+- Make sure the paths in the "Python Path" variable and the "Results Path" variable both have escaped `\` characters (i.e., use `\\`, for example: `C:\\folder\\subfolder`).
 - Make sure that all additional libraries are installed correctly (e.g. `pip3 install ...`) (see [Requirements](#Requirements)).
 - `Matplotlib` requires a module called `tkinter`, which is sometimes missing (especially on Windows).  If it is missing, try to reinstall python and pay attention to select "install tkinter" during the install process. You can test whether it is installed by running python and try the following:
  ```
