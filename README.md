@@ -15,7 +15,8 @@ Key features:
 - support for the 1 up/1 down method
 - support for the weighted up/down method  
 - supports multiple staircases in parallel  
-- supports a "quick start", where larger steps are taken until X (can be set freely) reversals have occurred (to speed up finding the relevant stimulus range early in the experiment)  
+- supports a "quick start", where larger steps are taken until X (can be set freely) reversals have occurred (to speed up finding the relevant stimulus range early in the experiment)
+- supports staircases with either a single sequence or two interleaved sequences
 
 We open-source the toolkit here so that other researchers can make use of it for their perception experiments (see the [license](LICENSE.md) for details).  
 Feel free to use the toolkit for your own experiments and projects (and if you find the time, let us know about it by sending an (informal) [email to André](mailto:andre.zenner@dfki.de)).
@@ -156,6 +157,8 @@ If `strictLimits` is set to `true` the staircase procedure will strictly stop to
 -  `int stepsUpStartLate` (default: `1`) (increase it to realize a "quick start" with an additional, intermediate step size) how many steps to increase the stimulus when answer was wrong/not detected (min. 1) after `quickStartEarlyUntilReversals` and before `quickStartLateUntilReversals` reversals have occurred
 -  `int stepsDownStartLate` (default: `1`) (increase it to realize a "quick start" with an additional, intermediate step size) how many steps to decrease the stimulus when answer was correct/detected (min. 1) after `quickStartEarlyUntilReversals` and before `quickStartLateUntilReversals` reversals have occurred
 -  `int quickStartLateUntilReversals` (default: `0` = "quick start" is off) (increase it to realize a "quick start" with an additional, intermediate step size) specifies the number of reversals that have to occur until the step size that is applied upwards switches from `stepsUpStartLate` to `stepsUp` and the step size that is applied downwards changes from `stepsDownStartLate` to `stepsDown`
+-  `bool singleSequence` (default: `false`): if set to `false`, two interleaved sequences (one ascending and one descending sequence) will be used; if set to `true` the staircase will run with only one sequence. Use the next parameter `singleSequenceUp` to specify if the single sequence should be ascending (up) or descending (not up).
+-  `bool singleSequenceUp` (default: `false`; only has an effect when `singleSequence` is set to `true`): specifies the direction of the single sequence (`true` means the sequence will be ascending, `false` means the sequence will be descending).
 
 ### Example 1:
 You can call the function in any of your Unity C# scripts:
@@ -174,6 +177,11 @@ StaircaseProcedure.SP.Init(minimumValue: 0.0f, maximumValue: 1.0f, numberOfSteps
 An example for a staircase with 3 different step sizes, which are configured through the "quick start" parameters:
 
 <img src="/Resources/3StepSizesExampleAnnotated.png"  width="700">
+
+### Example 3:
+An example for a staircase with only a single ascending sequence (configured by setting `singleSequence` to `true` and `singleSequenceUp` to `true`):
+
+<img src="/Resources/single-sequence-example.png"  width="700">
 
 ## <a name="TrialData"></a> TrialData class:
 
