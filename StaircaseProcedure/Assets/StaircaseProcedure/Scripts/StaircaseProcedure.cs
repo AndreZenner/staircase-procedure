@@ -10,7 +10,7 @@ using Staircase;
 
 public class StaircaseProcedure : MonoBehaviour
 {
-
+    public static string VERSION = "v17";
     public static StaircaseProcedure SP;                // one of the parallel SPs
     public static List<StaircaseProcedure> AllSPs;      // list of all parallel SPs
     public static NumberFormatInfo nfi = new NumberFormatInfo();
@@ -270,7 +270,7 @@ public class StaircaseProcedure : MonoBehaviour
             || port == 0
             || String.IsNullOrEmpty(delimiter)))
         {
-            Debug.Log("Hello! This is Staircase Procedure Toolkit v16");
+            Debug.Log("Hello! This is Staircase Procedure Toolkit " + VERSION);
             if (SP == null)
             {
                 SP = this;
