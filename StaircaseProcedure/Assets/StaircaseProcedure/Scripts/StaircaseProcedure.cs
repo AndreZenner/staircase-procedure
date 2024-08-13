@@ -140,6 +140,8 @@ public class StaircaseProcedure : MonoBehaviour
         int quickStartLateUntilReversals = 0,
         bool stopCriterionReversals = true, 
         bool strictLimits = false, 
+        bool singleSequence = false,
+        bool singleSequenceUp = false,
         string plotTitle = ""
         )
     {
@@ -169,7 +171,9 @@ public class StaircaseProcedure : MonoBehaviour
             conditionName, 
             numberParticipant,
             stopCriterionReversals, 
-            strictLimits, 
+            strictLimits,
+            singleSequence,
+            singleSequenceUp,
             plotTitle);
 
         proc = new ProcedureLogic(init);

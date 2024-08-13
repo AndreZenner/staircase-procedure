@@ -33,6 +33,8 @@ public class TestManager : MonoBehaviour
     public int numberThresholdPoints = 3;
     public bool stopCriterionReversals = true;
     public bool strictLimits = false;
+    public bool singleSequence = false;
+    public bool singleSequenceUp = false;
     public string plotTitle = "";
 
     // Update is called once per frame
@@ -63,6 +65,8 @@ public class TestManager : MonoBehaviour
                     numberParticipant: numberParticipant,
                     stopCriterionReversals: stopCriterionReversals, 
                     strictLimits: strictLimits, 
+                    singleSequence: singleSequence,
+                    singleSequenceUp: singleSequenceUp,
                     plotTitle: plotTitle
                     );
                 StaircaseProcedure.SP.GetNextStimulus();

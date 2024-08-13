@@ -30,6 +30,8 @@ namespace Staircase{
         public int numberParticipant{ get; }
         public bool stopCriterionReversals { get; }
         public bool strictLimits { get; }
+        public bool singleSequence { get; }
+        public bool singleSequenceUp { get; }
         public string plotTitle { get; }
 
         public InitData(float minimumValue, 
@@ -53,6 +55,8 @@ namespace Staircase{
             int numberParticipant,
             bool stopCriterionReversals,
             bool strictLimits,
+            bool singleSequence,
+            bool singleSequenceUp,
             string plotTitle
             )
         {
@@ -78,6 +82,8 @@ namespace Staircase{
             this.numberParticipant = numberParticipant;
             this.stopCriterionReversals = stopCriterionReversals;
             this.strictLimits = strictLimits;
+            this.singleSequence = singleSequence;
+            this.singleSequenceUp = singleSequenceUp;
             this.plotTitle = plotTitle;
         }    
     }

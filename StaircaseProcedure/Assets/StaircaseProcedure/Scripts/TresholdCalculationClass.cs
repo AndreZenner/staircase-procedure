@@ -33,11 +33,18 @@ public class ThresholdCalculationClass
     /// <summary> Calls the threshold calculation for each sequence first, then calculates the overall threshold </summary>
     public static float GetThresholdReversals(Sequence sequenceOne, Sequence sequenceTwo, int numberThresholdPoints)
     {
-        List<float> rerversalsSequ1 = sequenceOne.reversals;
-        List<float> rerversalsSequ2 = sequenceTwo.reversals;
-        float t1 = ThresholdCalculation(rerversalsSequ1, numberThresholdPoints, false);
-        float t2 = ThresholdCalculation(rerversalsSequ2, numberThresholdPoints, false);
-        float t = (t1 + t2) / 2;
-        return t;
+        if(sequenceOne == null && sequenceTwo != null)
+            return ThresholdCalculation(sequenceTwo.reversals, numberThresholdPoints, false);
+        else if (sequenceOne != null && sequenceTwo == null)
+            return ThresholdCalculation(sequenceOne.reversals, numberThresholdPoints, false);
+        else
+        {
+            List<float> rerversalsSequ1 = sequenceOne.reversals;
+            List<float> rerversalsSequ2 = sequenceTwo.reversals;
+            float t1 = ThresholdCalculation(rerversalsSequ1, numberThresholdPoints, false);
+            float t2 = ThresholdCalculation(rerversalsSequ2, numberThresholdPoints, false);
+            float t = (t1 + t2) / 2;
+            return t;
+        }
     }
 }

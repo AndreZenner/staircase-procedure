@@ -28,6 +28,14 @@ namespace Staircase
             float absoluteStartStimulusRight = Mathf.Lerp(init.minimumValue, init.maximumValue, (float)init.startStepSequ2 / (float)init.numberOfSteps);
             sequenceOne = new Sequence(absoluteStartStimulusLeft, 1, Dir.UP, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStartEarly, init.stepsDownStartEarly, init.quickStartEarlyUntilReversals, init.stepsUpStartLate, init.stepsDownStartLate, init.quickStartLateUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ1);
             sequenceTwo = new Sequence(absoluteStartStimulusRight, 2, Dir.DOWN, init.strictLimits, init.numberOfSteps, init.stepsUp, init.stepsDown, init.stepsUpStartEarly, init.stepsDownStartEarly, init.quickStartEarlyUntilReversals, init.stepsUpStartLate, init.stepsDownStartLate, init.quickStartLateUntilReversals, init.minimumValue, init.maximumValue, init.startStepSequ2);
+
+            if (init.singleSequence && init.stopCriterionReversals)
+            {
+                //artifically "end" one sequence to only work with the other sequence from now on
+                for (int i = 0; i < init.stopAmount; i++)
+                    (init.singleSequenceUp ? sequenceTwo : sequenceOne).reversals.Add(float.PositiveInfinity);
+            }
+            
             trialDataList = new List<TrialData>();
 
             // if number of trials is your stop criterion, a list will be created with 1s and 2s (sequence 1 or 2) to ensure random sequence selection with equal partial amounts
@@ -38,9 +46,18 @@ namespace Staircase
         /// <summary>Initializes a List of size 'stopAmount' with 1 and 2 like [1,1,1,1,...,2,2,2,2...] </summary>
         public void InitSequenceList()
         {
-            List<int> list1 = Enumerable.Repeat(1, init.stopAmount / 2).ToList();
-            List<int> list2 = Enumerable.Repeat(2, (int)Math.Ceiling((float)init.stopAmount / 2)).ToList();
-            sequenceList = list1.Concat(list2).ToList();
+            if (init.singleSequence)
+            {
+                List<int> list1 = init.singleSequenceUp ? Enumerable.Repeat(1, init.stopAmount).ToList() : new List<int>();
+                List<int> list2 = init.singleSequenceUp ? new List<int>() : Enumerable.Repeat(2, (int)Math.Ceiling((float)init.stopAmount)).ToList();
+                sequenceList = list1.Concat(list2).ToList();
+            }
+            else
+            {
+                List<int> list1 = Enumerable.Repeat(1, init.stopAmount / 2).ToList();
+                List<int> list2 = Enumerable.Repeat(2, (int)Math.Ceiling((float)init.stopAmount / 2)).ToList();
+                sequenceList = list1.Concat(list2).ToList();
+            }
         }
 
         /// <summary>Returns the next stimulus intensity based on the stopCriterion </summary>
@@ -111,7 +128,10 @@ namespace Staircase
         /// <summary> Calls the threshold calculation </summary>
         public float GetThreshold()
         {
-            return ThresholdCalculationClass.GetThresholdReversals(sequenceOne, sequenceTwo, init.numberThresholdPoints);
+            if(init.singleSequence)
+                return ThresholdCalculationClass.GetThresholdReversals(init.singleSequenceUp ? sequenceOne : null, init.singleSequenceUp ? null : sequenceTwo, init.numberThresholdPoints);
+            else
+                return ThresholdCalculationClass.GetThresholdReversals(sequenceOne, sequenceTwo, init.numberThresholdPoints);
         }
 
         /// <summary> One of the two sequences is randomly selected with a probability of 0.5. If one of the sequences has reached the stop amount of reversal points
