@@ -25,17 +25,26 @@ Feel free to use the toolkit for your own experiments and projects (and if you f
 ## Reference
 Please reference the toolkit as follows (e.g. with the BibTex below).
 
-> Zenner, A., & Ullmann, K.. (2021). AndreZenner/staircase-procedure: The Unity Staircase Procedure Toolkit. https://github.com/AndreZenner/staircase-procedure
+> André Zenner, Kristin Ullmann, Chiara Karr, Oscar Ariza, and Antonio Krüger. 2023. The Staircase Procedure Toolkit: Psychophysical Detection Threshold Experiments Made Easy. In Proceedings of the 29th ACM Symposium on Virtual Reality Software and Technology (VRST '23). Association for Computing Machinery, New York, NY, USA, Article 86, 1–2. https://doi.org/10.1145/3611659.3617218 https://github.com/AndreZenner/staircase-procedure
 
 ```
-@misc{Zenner:2021:UnityStaircase, 
- title={AndreZenner/staircase-procedure: The Unity Staircase Procedure Toolkit}, 
- url={https://github.com/AndreZenner/staircase-procedure}, 
- journal={GitHub}, 
- author={Zenner, André and Ullmann, Kristin}, 
- year={2021}, 
- month={Aug}
-} 
+@inproceedings{10.1145/3611659.3617218,
+author = {Zenner, Andr\'{e} and Ullmann, Kristin and Karr, Chiara and Ariza, Oscar and Kr\"{u}ger, Antonio},
+title = {The Staircase Procedure Toolkit: Psychophysical Detection Threshold Experiments Made Easy},
+year = {2023},
+isbn = {9798400703287},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3611659.3617218},
+doi = {10.1145/3611659.3617218},
+abstract = {We propose a novel open-source software toolkit to support researchers in the domains of human-computer interaction (HCI) and virtual reality (VR) in conducting psychophysical experiments. Our toolkit is designed to work with the widely-used Unity engine and is implemented in C# and Python. With the toolkit, researchers can easily set up, run, and analyze experiments to find perceptual detection thresholds using the adaptive weighted up/down method, also known as the staircase procedure. Besides being straightforward to integrate in Unity projects, the toolkit automatically stores experiment results, features a live plotter that visualizes answers in real time, and offers scripts that help researchers analyze the gathered data using statistical tests.},
+booktitle = {Proceedings of the 29th ACM Symposium on Virtual Reality Software and Technology},
+articleno = {86},
+numpages = {2},
+keywords = {Python, Unity, detection threshold, psychophysical experiments, staircase procedure, up/down method},
+location = {Christchurch, New Zealand},
+series = {VRST '23}
+}
 ```
 
 
